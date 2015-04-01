@@ -42,5 +42,13 @@
     #import <clang-c/Index.h>
     #import "CKWarnings.h"
     #import "CKTypes.h"
-    
+     
+    #import "NSFileManager+CE.h"
+    #import "NSBundle+CE.h"
+    #import "NSString+CE.h"
+    #import "NSApplication+CE.h"
+    #import "NSTextView+CE.h"
+    #import "NSImage+CE.h"
+    #import "NSView+CE.h"
+
 #endif
