@@ -11,27 +11,26 @@
  *                  classes. No other header file should be directly included.
  */
 
-#import "CEQuickLookItem.h"
-
-#import "CKTypes.h"
-#import "CKDiagnostic.h"
-#import "CKFixIt.h"
-#import "CKIndex.h"
-#import "CKToken.h"
-#import "CKTranslationUnit.h"
-#import "CKCursor.h"
-#import "CKSourceLocation.h"
-#import "CKCompletionResult.h"
-#import "CKCompletionChunk.h"
 
 
+#import <ClangKit/CKTypes.h>
+#import <ClangKit/CKDiagnostic.h>
+#import <ClangKit/CKFixIt.h>
+#import <ClangKit/CKIndex.h>
+#import <ClangKit/CKToken.h>
+#import <ClangKit/CKTranslationUnit.h>
+#import <ClangKit/CKCursor.h>
+#import <ClangKit/CKSourceLocation.h>
+#import <ClangKit/CKCompletionResult.h>
+#import <ClangKit/CKCompletionChunk.h>
 
-#import "NSFileManager+CE.h"
-#import "NSBundle+CE.h"
-#import "NSString+CE.h"
-#import "NSApplication+CE.h"
-#import "NSTextView+CE.h"
-#import "NSImage+CE.h"
-#import "NSView+CE.h"
+
+
+#import <ClangKit/NSFileManager+CE.h>
+#import <ClangKit/NSBundle+CE.h>
+#import <ClangKit/NSString+CE.h>
+#import <ClangKit/NSTextView+CE.h>
+#import <ClangKit/NSImage+CE.h>
+#import <ClangKit/NSView+CE.h>
 
 
