@@ -73,18 +73,14 @@ typedef NS_OPTIONS(unsigned int, CKLanguage)
 
 #endif /* __CK_TYPES_H__ */
 
-
 #ifndef __CE_MACROS_H__
 #define __CE_MACROS_H__
 
-#define L10N( __label__ )                       NSLocalizedString( [ NSString stringWithCString: __label__ encoding: NSUTF8StringEncoding ], nil )
+#define L10N( __label__ ) NSLocalizedString( [NSString stringWithCString:__label__ encoding:NSUTF8StringEncoding], nil)
 
-#define RELEASE_IVAR( __ivar__ )  __ivar__ = nil
+#define RELEASE_IVAR(__ivar__)  __ivar__ = nil  // [ __ivar__ release ];
 
-//              [ __ivar__ release ]; 
-
-
-#define RESERVED_IVARS( __cls__, __num__ )     id _ ## __cls__ ## _Reserved[ __num__ ] __attribute__( ( unused ) )
+#define RESERVED_IVARS(__cls__,__num__) id _ ## __cls__ ## _Reserved[ __num__ ] __attribute__( ( unused ) )
 
 #define NOTIFICATION_CENTER                     ( ( NSNotificationCenter * )[ NSNotificationCenter  defaultCenter ] )
 #define FILE_MANAGER                            ( ( NSFileManager        * )[ NSFileManager         defaultManager ] )

@@ -108,7 +108,6 @@
 		059872F915D74D09006FF8D2 /* ClangKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ClangKit-Info.plist"; path = "ClangKit/ClangKit-Info.plist"; sourceTree = "<group>"; };
 		059872FD15D74D09006FF8D2 /* ClangKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ClangKit-Prefix.pch"; path = "ClangKit/ClangKit-Prefix.pch"; sourceTree = "<group>"; };
 		059872FE15D74D09006FF8D2 /* ClangKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ClangKit.h; path = ClangKit/ClangKit.h; sourceTree = "<group>"; };
-		0598734815D74F8B006FF8D2 /* CKWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKWarnings.h; path = ClangKit/CKWarnings.h; sourceTree = "<group>"; };
 		0598734B15D75153006FF8D2 /* CKDiagnostic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKDiagnostic.h; sourceTree = "<group>"; };
 		0598734C15D75153006FF8D2 /* CKDiagnostic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKDiagnostic.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0598734F15D75153006FF8D2 /* CKFixIt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKFixIt.h; sourceTree = "<group>"; };
@@ -194,7 +193,6 @@
 			children = (
 				059872FE15D74D09006FF8D2 /* ClangKit.h */,
 				0598737B15D751B8006FF8D2 /* CKTypes.h */,
-				0598734815D74F8B006FF8D2 /* CKWarnings.h */,
 				059872FD15D74D09006FF8D2 /* ClangKit-Prefix.pch */,
 				0598730F15D74DE2006FF8D2 /* Classes */,
 				7B380BBE1AC984F700285B4E /* Categories */,
