@@ -2,7 +2,6 @@
 /* $Id$ */
 
 #import "CKTranslationUnit.h"
-#import "CKTranslationUnit+Private.h"
 #import "CKIndex.h"
 #import "CKDiagnostic.h"
 #import "CKToken.h"
@@ -10,60 +9,38 @@
 
 @implementation CKTranslationUnit
 
-@synthesize path = _path;
-@synthesize cxTranslationUnit = _cxTranslationUnit;
-@synthesize index = _index;
+@synthesize path = _path, cxTranslationUnit = _cxTranslationUnit, index = _index;
 
 + (instancetype)translationUnitWithPath:(NSString*)path {
-  return [[self.alloc
-    initWithPath:path] autorelease];
+  return [self.alloc initWithPath:path];
 }
 
 + (instancetype)translationUnitWithPath:(NSString*)path index:(CKIndex*)index {
-  return [[self.alloc
-    initWithPath:path
-           index:index] autorelease];
+  return [self.alloc initWithPath:path index:index];
 }
 
 + (instancetype)translationUnitWithPath:(NSString*)path args:(NSArray*)args {
-  return [[self.alloc
-    initWithPath:path
-            args:args] autorelease];
+  return [self.alloc initWithPath:path args:args];
 }
 
 + (instancetype)translationUnitWithPath:(NSString*)path index:(CKIndex*)index args:(NSArray*)args {
-  return [[self.alloc
-    initWithPath:path
-           index:index
-            args:args] autorelease];
+  return [self.alloc initWithPath:path index:index args:args];
 }
 
 + (instancetype)translationUnitWithText:(NSString*)text language:(CKLanguage)language {
-  return [[self.alloc
-    initWithText:text
-        language:language] autorelease];
+  return [self.alloc initWithText:text language:language];
 }
 
 + (instancetype)translationUnitWithText:(NSString*)text language:(CKLanguage)language index:(CKIndex*)index {
-  return [[self.alloc
-    initWithText:text
-        language:language
-           index:index] autorelease];
+  return [self.alloc initWithText:text language:language index:index];
 }
 
 + (instancetype)translationUnitWithText:(NSString*)text language:(CKLanguage)language args:(NSArray*)args {
-  return [[self.alloc
-    initWithText:text
-        language:language
-            args:args] autorelease];
+  return [self.alloc initWithText:text language:language args:args];
 }
 
 + (instancetype)translationUnitWithText:(NSString*)text language:(CKLanguage)language index:(CKIndex*)index args:(NSArray*)args {
-  return [[self.alloc
-    initWithText:text
-        language:language
-           index:index
-            args:args] autorelease];
+  return [self.alloc initWithText:text language:language index:index args:args];
 }
 
 - (instancetype)initWithPath:(NSString*)path {
@@ -136,7 +113,6 @@
   CFRelease(uuidString);
 
   if (mkstemp((char*)(tempFile.fileSystemRepresentation)) == -1) {
-    [self release];
 
     return nil;
   }
@@ -164,14 +140,6 @@
 
     free(_unsavedFile);
   }
-
-  [_path release];
-  [_text release];
-  [_index release];
-  [_diagnostics release];
-  [_lock release];
-
-  [super dealloc];
 }
 
 - (void)reparse {
@@ -183,9 +151,6 @@
 
       _tokensPointer = NULL;
     }
-
-    [_tokens release];
-    [_diagnostics release];
 
     _tokens = nil;
     _diagnostics = nil;
@@ -208,7 +173,7 @@
     if (_diagnostics == nil) {
       [_lock lock];
 
-      _diagnostics = [[CKDiagnostic diagnosticsForTranslationUnit:self] retain];
+      _diagnostics = [CKDiagnostic diagnosticsForTranslationUnit:self];
 
       [_lock unlock];
     }
@@ -222,7 +187,7 @@
     if (_tokens == nil) {
       [_lock lock];
 
-      _tokens = [[CKToken tokensForTranslationUnit:self tokens:&_tokensPointer] retain];
+      _tokens = [CKToken tokensForTranslationUnit:self tokens:&_tokensPointer];
 
       [_lock unlock];
     }
@@ -245,9 +210,8 @@
 
     if (_unsavedFile != NULL) {
       if (_text != text) {
-        [_text release];
 
-        _text = [text retain];
+        _text = text;
       }
       @try {
         ((struct CXUnsavedFile*)_unsavedFile)->Filename = _path.fileSystemRepresentation;
@@ -324,6 +288,89 @@
   [_lock unlock];
 
   return [NSArray arrayWithArray:array];
+}
+
+// PRIVATE
+
+- (id)initWithPath:(NSString*)path text:(NSString*)text index:(CKIndex*)index args:(NSArray*)args {
+  NSUInteger i;
+  id arg;
+
+  if ((self = [self init])) {
+    _lock = [NSLock new];
+    _path = [path copy];
+    _index = (index == nil) ? [CKIndex new] : index;
+
+    if (text == nil) {
+      _text = [NSString stringWithContentsOfFile:_path encoding:NSUTF8StringEncoding error:NULL];
+
+      if (_text.length == 0) {
+
+        return nil;
+      }
+    } else {
+      _text = text;
+      _unsavedFile = calloc(sizeof(struct CXUnsavedFile), 1);
+
+      if (_unsavedFile == NULL) {
+
+        return nil;
+      }
+
+      ((struct CXUnsavedFile*)_unsavedFile)->Filename = _path.fileSystemRepresentation;
+      ((struct CXUnsavedFile*)_unsavedFile)->Contents = _text.UTF8String;
+      ((struct CXUnsavedFile*)_unsavedFile)->Length = _text.length;
+    }
+
+    if (args.count > 0) {
+      _args = (char**)calloc(sizeof(char*), args.count);
+
+      if (_args == NULL) {
+
+        return nil;
+      }
+
+      i = 0;
+
+      for (arg in args) {
+        if ([arg isKindOfClass:[NSString class]] == NO) {
+          continue;
+        }
+
+        _args[i] = calloc(sizeof(char), strlen(((NSString*)arg).UTF8String) + 1);
+
+        if (_args[i] == NULL) {
+
+          return nil;
+        }
+
+        strlcpy((char*)_args[i], ((NSString*)arg).UTF8String, strlen(((NSString*)arg).UTF8String) + 1);
+
+        i++;
+
+        _numArgs = (int)i;
+      }
+    }
+
+    _cxTranslationUnit = clang_parseTranslationUnit(
+      _index.cxIndex,
+      _path.fileSystemRepresentation,
+      (const char* const*)_args,
+      _numArgs,
+      _unsavedFile,
+      (_unsavedFile == NULL) ? 0 : 1,
+      clang_defaultEditingTranslationUnitOptions() | CXTranslationUnit_DetailedPreprocessingRecord | CXTranslationUnit_PrecompiledPreamble | CXTranslationUnit_CacheCompletionResults | CXTranslationUnit_Incomplete);
+
+    if (_cxTranslationUnit == NULL) {
+
+      return nil;
+    }
+
+    [self tokens];
+    [self diagnostics];
+  }
+
+  return self;
 }
 
 @end

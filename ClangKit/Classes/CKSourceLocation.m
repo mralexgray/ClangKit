@@ -5,15 +5,12 @@
 
 @implementation CKSourceLocation
 
-@synthesize ptrData1 = _ptrData1;
-@synthesize ptrData2 = _ptrData2;
-@synthesize intData  = _intData;
-@synthesize fileName = _fileName;
+@synthesize ptrData1 = _ptrData1, ptrData2 = _ptrData2, intData  = _intData, fileName = _fileName;
 
 + ( instancetype )sourceLocationWithPointerData1: ( void * )ptrData1 pointerData2: ( void * )ptrData2 intData: ( unsigned int )intData
 {
-    return [[self.alloc 
-         initWithPointerData1: ptrData1 pointerData2: ptrData2 intData: intData ] autorelease ];
+    return [self.alloc 
+         initWithPointerData1: ptrData1 pointerData2: ptrData2 intData: intData ];
 }
 
 - ( instancetype )initWithPointerData1: ( void * )ptrData1 pointerData2: ( void * )ptrData2 intData: ( unsigned int )intData
@@ -49,11 +46,5 @@
     return self;
 }
 
-- ( void )dealloc
-{
-    [ _fileName release ];
-    
-    [ super dealloc ];
-}
 
 @end

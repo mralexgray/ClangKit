@@ -15,13 +15,7 @@ CKDiagnosticSeverity CKDiagnosticSeverityFatal = CXDiagnostic_Fatal;
 
 @implementation CKDiagnostic
 
-@synthesize cxDiagnostic = _cxDiagnostic;
-@synthesize spelling = _spelling;
-@synthesize severity = _severity;
-@synthesize fixIts = _fixIts;
-@synthesize line = _line;
-@synthesize column = _column;
-@synthesize range = _range;
+@synthesize cxDiagnostic = _cxDiagnostic, spelling = _spelling, severity = _severity, fixIts = _fixIts, line = _line, column = _column, range = _range;
 
 + (NSArray*)diagnosticsForTranslationUnit:(CKTranslationUnit*)translationUnit {
   unsigned int numDiagnostics;
@@ -44,8 +38,8 @@ CKDiagnosticSeverity CKDiagnosticSeverityFatal = CXDiagnostic_Fatal;
 }
 
 + (instancetype)diagnosticWithTranslationUnit:(CKTranslationUnit*)translationUnit index:(NSUInteger)index {
-  return [[self.alloc 
-         initWithTranslationUnit:(CKTranslationUnit*)translationUnit index:index] autorelease];
+  return [self.alloc 
+         initWithTranslationUnit:(CKTranslationUnit*)translationUnit index:index];
 }
 
 - (instancetype)initWithTranslationUnit:(CKTranslationUnit*)translationUnit index:(NSUInteger)index {
@@ -58,10 +52,7 @@ CKDiagnosticSeverity CKDiagnosticSeverityFatal = CXDiagnostic_Fatal;
 - (void)dealloc {
   clang_disposeDiagnostic(_cxDiagnostic);
 
-  [_fixIts release];
-  [_spelling release];
 
-  [super dealloc];
 }
 
 - (NSString*)description {
@@ -102,7 +93,6 @@ CKDiagnosticSeverity CKDiagnosticSeverityFatal = CXDiagnostic_Fatal;
 
   if ((self = [self init])) {
     if (diagnostic == NULL) {
-      [self release];
 
       return nil;
     }
@@ -124,7 +114,7 @@ CKDiagnosticSeverity CKDiagnosticSeverityFatal = CXDiagnostic_Fatal;
     _column = (NSUInteger)column;
     _range = NSMakeRange((NSUInteger)offset, range.end_int_data - range.begin_int_data);
 
-    _fixIts = [[CKFixIt fixItsForDiagnostic:self] retain];
+    _fixIts = [CKFixIt fixItsForDiagnostic:self];
   }
 
   return self;

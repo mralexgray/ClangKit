@@ -1,4 +1,4 @@
- 
+
 /* $Id$ */
 
 /*!
@@ -14,73 +14,39 @@
  * @class           CKTranslationUnit
  * @abstract        Translation unit class
  */
-@interface CKTranslationUnit: NSObject
-{
+@interface CKTranslationUnit : NSObject {
 @protected
-    
-    NSString          * _path;
-    NSString          * _text;
-    CXTranslationUnit   _cxTranslationUnit;
-    CKIndex           * _index;
-    char             ** _args;
-    int                 _numArgs;
-    NSArray           * _diagnostics;
-    NSArray           * _tokens;
-    void              * _tokensPointer;
-    void              * _unsavedFile;
-	NSLock            * _lock;
+
+  NSString* _path;
+  NSString* _text;
+  CXTranslationUnit _cxTranslationUnit;
+  CKIndex* _index;
+  char** _args;
+  int _numArgs;
+  NSArray* _diagnostics;
+  NSArray* _tokens;
+  void* _tokensPointer;
+  void* _unsavedFile;
+  NSLock* _lock;
 }
 
-/*!
- * @property        path
- * @abstract        Translation's unit path
- */
-@property( atomic, readonly ) NSString * path;
+@property (readonly) NSString* path;
 
-/*!
- * @property        text
- * @abstract        Translation's unit text
- */
-@property( atomic, readwrite, retain ) NSString * text;
+@property NSString* text;
 
-/*!
- * @property        cxTranslationUnit
- * @abstract        Internal libclang translation unit object
- */
-@property( atomic, readonly ) CXTranslationUnit cxTranslationUnit;
+@property (readonly) CKIndex* index;
 
-/*!
- * @property        index
- * @abstract        The index object
- */
-@property( atomic, readonly ) CKIndex * index;
+@property (readonly) NSArray* diagnostics, *tokens;
 
-/*!
- * @property        diagnostics
- * @abstract        An array of diagnostics for the translation unit
- */
-@property( atomic, readonly ) NSArray * diagnostics;
+/// Internal libclang translation unit object
+@property (readonly) CXTranslationUnit cxTranslationUnit;
 
-/*!
- * @property        tokens
- * @abstract        An array of tokens for the translation unit
- */
-@property( atomic, readonly ) NSArray * tokens;
+/// Internal libclang file object
+@property (readonly) CXFile cxFile;
 
-/*!
- * @property        cxFile
- * @abstract        Internal libclang file object
- */
-@property( atomic, readonly ) CXFile cxFile;
+/// Returns an autoreleased translation unit object from a path
 
-/*!
- * @method          translationUnitWithPath:
- * @abstract        Gets a translation unit from a path
- * @param           path        The path
- * @return          The translation unit object
- * @discussion      The returned object is autoreleased.
- */
-+ ( instancetype )translationUnitWithPath: ( NSString * )path;
++ (instancetype)translationUnitWithPath:(NSString*)path;
 
 /*!
  * @method          translationUnitWithPath:index:
@@ -90,7 +56,7 @@
  * @return          The translation unit object
  * @discussion      The returned object is autoreleased.
  */
-+ ( instancetype )translationUnitWithPath: ( NSString * )path index: ( CKIndex * )index;
++ (instancetype)translationUnitWithPath:(NSString*)path index:(CKIndex*)index;
 
 /*!
  * @method          translationUnitWithPath:args:
@@ -100,7 +66,7 @@
  * @return          The translation unit object
  * @discussion      The returned object is autoreleased.
  */
-+ ( instancetype )translationUnitWithPath: ( NSString * )path args: ( NSArray * )args;
++ (instancetype)translationUnitWithPath:(NSString*)path args:(NSArray*)args;
 
 /*!
  * @method          translationUnitWithPath:index:args:
@@ -111,7 +77,7 @@
  * @return          The translation unit object
  * @discussion      The returned object is autoreleased.
  */
-+ ( instancetype )translationUnitWithPath: ( NSString * )path index: ( CKIndex * )index args: ( NSArray * )args;
++ (instancetype)translationUnitWithPath:(NSString*)path index:(CKIndex*)index args:(NSArray*)args;
 
 /*!
  * @method          translationUnitWithText:language:
@@ -121,7 +87,7 @@
  * @return          The translation unit object
  * @discussion      The returned object is autoreleased.
  */
-+ ( instancetype )translationUnitWithText: ( NSString * )text language: ( CKLanguage )language;
++ (instancetype)translationUnitWithText:(NSString*)text language:(CKLanguage)language;
 
 /*!
  * @method          translationUnitWithText:language:index:
@@ -132,7 +98,7 @@
  * @return          The translation unit object
  * @discussion      The returned object is autoreleased.
  */
-+ ( instancetype )translationUnitWithText: ( NSString * )text language: ( CKLanguage )language index: ( CKIndex * )index;
++ (instancetype)translationUnitWithText:(NSString*)text language:(CKLanguage)language index:(CKIndex*)index;
 
 /*!
  * @method          translationUnitWithText:language:args:
@@ -143,7 +109,7 @@
  * @return          The translation unit object
  * @discussion      The returned object is autoreleased.
  */
-+ ( instancetype )translationUnitWithText: ( NSString * )text language: ( CKLanguage )language args: ( NSArray * )args;
++ (instancetype)translationUnitWithText:(NSString*)text language:(CKLanguage)language args:(NSArray*)args;
 
 /*!
  * @method          translationUnitWithText:language:index:args:
@@ -155,7 +121,7 @@
  * @return          The translation unit object
  * @discussion      The returned object is autoreleased.
  */
-+ ( instancetype )translationUnitWithText: ( NSString * )text language: ( CKLanguage )language index: ( CKIndex * )index args: ( NSArray * )args;
++ (instancetype)translationUnitWithText:(NSString*)text language:(CKLanguage)language index:(CKIndex*)index args:(NSArray*)args;
 
 /*!
  * @method          initWithPath:
@@ -163,7 +129,7 @@
  * @param           path        The path
  * @return          The translation unit objectb                                                                                                                                             
  */
-- ( instancetype )initWithPath: ( NSString * )path;
+- (instancetype)initWithPath:(NSString*)path;
 
 /*!
  * @method          initWithPath:index:
@@ -172,7 +138,7 @@
  * @param           index       The index
  * @return          The translation unit object
  */
-- ( instancetype )initWithPath: ( NSString * )path index: ( CKIndex * )index;
+- (instancetype)initWithPath:(NSString*)path index:(CKIndex*)index;
 
 /*!
  * @method          initWithPath:args:
@@ -181,7 +147,7 @@
  * @param           args        The arguments
  * @return          The translation unit object
  */
-- ( instancetype )initWithPath: ( NSString * )path args: ( NSArray * )args;
+- (instancetype)initWithPath:(NSString*)path args:(NSArray*)args;
 
 /*!
  * @method          initWithPath:index:args:
@@ -191,7 +157,7 @@
  * @param           args        The arguments
  * @return          The translation unit object
  */
-- ( instancetype )initWithPath: ( NSString * )path index: ( CKIndex * )index args: ( NSArray * )args;
+- (instancetype)initWithPath:(NSString*)path index:(CKIndex*)index args:(NSArray*)args;
 
 /*!
  * @method          initWithText:language:
@@ -200,7 +166,7 @@
  * @param           language    The language to use
  * @return          The translation unit object
  */
-- ( instancetype )initWithText: ( NSString * )text language: ( CKLanguage )language;
+- (instancetype)initWithText:(NSString*)text language:(CKLanguage)language;
 
 /*!
  * @method          initWithText:language:index:
@@ -210,7 +176,7 @@
  * @param           index       The index
  * @return          The translation unit object
  */
-- ( instancetype )initWithText: ( NSString * )text language: ( CKLanguage )language index: ( CKIndex * )index;
+- (instancetype)initWithText:(NSString*)text language:(CKLanguage)language index:(CKIndex*)index;
 
 /*!
  * @method          initWithText:language:args:
@@ -220,7 +186,7 @@
  * @param           args        The arguments
  * @return          The translation unit object
  */
-- ( instancetype )initWithText: ( NSString * )text language: ( CKLanguage )language args: ( NSArray * )args;
+- (instancetype)initWithText:(NSString*)text language:(CKLanguage)language args:(NSArray*)args;
 
 /*!
  * @method          initWithText:language:index:args:
@@ -231,13 +197,13 @@
  * @param           args        The arguments
  * @return          The translation unit object
  */
-- ( instancetype )initWithText: ( NSString * )text language: ( CKLanguage )language index: ( CKIndex * )index args: ( NSArray * )args;
+- (instancetype)initWithText:(NSString*)text language:(CKLanguage)language index:(CKIndex*)index args:(NSArray*)args;
 
 /*!
  * @method          reparse
  * @abstract        Reparses the translation unit
  */
-- ( void )reparse;
+- (void)reparse;
 
 /*!
  * @method          completionResultsForLine:column:
@@ -246,6 +212,6 @@
  * @param           column      The column number
  * @return          An array of completion results
  */
-- ( NSArray * )completionResultsForLine: ( NSUInteger )line column: ( NSUInteger )column;
+- (NSArray*)completionResultsForLine:(NSUInteger)line column:(NSUInteger)column;
 
 @end

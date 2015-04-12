@@ -6,8 +6,7 @@
 
 @implementation CKFixIt
 
-@synthesize string = _string;
-@synthesize range  = _range;
+@synthesize string = _string, range  = _range;
 
 + ( NSArray * )fixItsForDiagnostic: ( CKDiagnostic * )diagnostic
 {
@@ -34,8 +33,8 @@
 
 + ( instancetype )fixItWithDiagnostic: ( CKDiagnostic * )diagnostic index: ( NSUInteger )index
 {
-    return [[self.alloc 
-         initWithDiagnostic: diagnostic index: index ] autorelease ];
+    return [self.alloc 
+         initWithDiagnostic: diagnostic index: index ];
 }
 
 - ( instancetype )initWithDiagnostic: ( CKDiagnostic * )diagnostic index: ( NSUInteger )index
@@ -53,12 +52,6 @@
     return self;
 }
 
-- ( void )dealloc
-{
-    [ _string release ];
-    
-    [ super dealloc ];
-}
 
 - ( NSString * )description
 {

@@ -14,98 +14,27 @@
  */
 typedef NSInteger CKTokenKind;
 
-/*!
- * @var             CKTokenKindPunctuation
- * @abstract        Token kind - Punctuation
- */
-FOUNDATION_EXPORT CKTokenKind CKTokenKindPunctuation;
+FOUNDATION_EXPORT CKTokenKind CKTokenKindPunctuation,
+                              CKTokenKindKeyword,
+                              CKTokenKindIdentifier,
+                              CKTokenKindLiteral,
+                              CKTokenKindComment;
 
-/*!
- * @var             CKTokenKindKeyword
- * @abstract        Token kind - Keyword
- */
-FOUNDATION_EXPORT CKTokenKind CKTokenKindKeyword;
+@class CKTranslationUnit, CKCursor, CKSourceLocation;
 
-/*!
- * @var             CKTokenKindIdentifier
- * @abstract        Token kind - Identifier
- */
-FOUNDATION_EXPORT CKTokenKind CKTokenKindIdentifier;
-
-/*!
- * @var             CKTokenKindLiteral
- * @abstract        Token kind - Literal
- */
-FOUNDATION_EXPORT CKTokenKind CKTokenKindLiteral;
-
-/*!
- * @var             CKTokenKindComment
- * @abstract        Token kind - Comment
- */
-FOUNDATION_EXPORT CKTokenKind CKTokenKindComment;
-
-@class CKTranslationUnit;
-@class CKCursor;
-@class CKSourceLocation;
-
-/*!
- * @class           CKToken
- * @abstract        Token class
- */
 @interface CKToken: NSObject
-{
-@protected
-    
-    NSString         * _spelling;
-    CKTokenKind        _kind;
-    NSUInteger         _line;
-    NSUInteger         _column;
-    NSRange            _range;
-    CKCursor         * _cursor;
-    CKSourceLocation * _sourceLocation;
-}
 
-/*!
- * @property        spelling
- * @abstract        The token's spelling
- */
-@property( atomic, readonly ) NSString * spelling;
+@property(readonly) NSString * spelling;
 
-/*!
- * @property        kind
- * @abstract        The token kind
- */
-@property( atomic, readonly ) CKTokenKind kind;
+@property (readonly) CKTokenKind kind;
 
-/*!
- * @property        line
- * @abstract        The line number for the token
- */
-@property( atomic, readonly ) NSUInteger line;
+@property (readonly) NSUInteger line, column;
 
-/*!
- * @property        column
- * @abstract        The column number for the token
- */
-@property( atomic, readonly ) NSUInteger column;
+@property (readonly) NSRange range;
 
-/*!
- * @property        range
- * @abstract        The token's range
- */
-@property( atomic, readonly ) NSRange range;
+@property(readonly) CKCursor * cursor;
 
-/*!
- * @property        cursor
- * @abstract        The token's cursor
- */
-@property( atomic, readonly ) CKCursor * cursor;
-
-/*!
- * @property        sourceLocation
- * @abstract        The source location of the token
- */
-@property( atomic, readonly ) CKSourceLocation * sourceLocation;
+@property(readonly) CKSourceLocation * sourceLocation;
 
 /*!
  * @method          tokensForTranslationUnit:tokens:

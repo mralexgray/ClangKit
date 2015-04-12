@@ -13,8 +13,6 @@
 		050543D415E063A100697329 /* CKCompletionResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 050543D015E063A100697329 /* CKCompletionResult.m */; };
 		0518B9D615D7577D00349932 /* ClangKitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0518B9D515D7577D00349932 /* ClangKitTest.m */; };
 		0518B9DF15D7589F00349932 /* ClangKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059872EE15D74D09006FF8D2 /* ClangKit.framework */; };
-		0518B9EC15D7F63A00349932 /* CKTranslationUnit+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518B9EA15D7F63A00349932 /* CKTranslationUnit+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		0518B9ED15D7F63A00349932 /* CKTranslationUnit+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 0518B9EB15D7F63A00349932 /* CKTranslationUnit+Private.m */; };
 		0518BAA115D869D700349932 /* ClangKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 059872FE15D74D09006FF8D2 /* ClangKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0518BAA215D869D700349932 /* CKTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 0598737B15D751B8006FF8D2 /* CKTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		055BB2E91A83BDDF00E6AC23 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055BB2E81A83BDDF00E6AC23 /* Foundation.framework */; };
@@ -30,16 +28,12 @@
 		0598736C15D75153006FF8D2 /* CKIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0598735415D75153006FF8D2 /* CKIndex.m */; };
 		0598737315D75153006FF8D2 /* CKToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 0598735B15D75153006FF8D2 /* CKToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0598737415D75153006FF8D2 /* CKToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 0598735C15D75153006FF8D2 /* CKToken.m */; };
-		0598737515D75153006FF8D2 /* CKToken+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 0598735D15D75153006FF8D2 /* CKToken+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		0598737615D75153006FF8D2 /* CKToken+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 0598735E15D75153006FF8D2 /* CKToken+Private.m */; };
 		0598737715D75153006FF8D2 /* CKTranslationUnit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0598735F15D75153006FF8D2 /* CKTranslationUnit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0598737815D75153006FF8D2 /* CKTranslationUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0598736015D75153006FF8D2 /* CKTranslationUnit.m */; };
 		05A73DB015D9553D00AB75F4 /* CKCursor.h in Headers */ = {isa = PBXBuildFile; fileRef = 05A73DAE15D9553D00AB75F4 /* CKCursor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05A73DB115D9553D00AB75F4 /* CKCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A73DAF15D9553D00AB75F4 /* CKCursor.m */; };
 		05A73DBD15D95DA600AB75F4 /* CKSourceLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 05A73DBB15D95DA600AB75F4 /* CKSourceLocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05A73DBE15D95DA600AB75F4 /* CKSourceLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A73DBC15D95DA600AB75F4 /* CKSourceLocation.m */; };
-		05A73DC115D9645E00AB75F4 /* CKCursor+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 05A73DBF15D9645E00AB75F4 /* CKCursor+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		05A73DC215D9645E00AB75F4 /* CKCursor+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A73DC015D9645E00AB75F4 /* CKCursor+Private.m */; };
 		7B380B931AC97C4100285B4E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B380B921AC97C4100285B4E /* AppDelegate.m */; };
 		7B380B951AC97C4100285B4E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B380B941AC97C4100285B4E /* main.m */; };
 		7B380B971AC97C4100285B4E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B380B961AC97C4100285B4E /* Images.xcassets */; };
@@ -95,8 +89,6 @@
 		050543D015E063A100697329 /* CKCompletionResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKCompletionResult.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0518B9D015D7577D00349932 /* ClangKitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ClangKitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0518B9D515D7577D00349932 /* ClangKitTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ClangKitTest.m; path = ClangKitTest/ClangKitTest.m; sourceTree = "<group>"; };
-		0518B9EA15D7F63A00349932 /* CKTranslationUnit+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKTranslationUnit+Private.h"; sourceTree = "<group>"; };
-		0518B9EB15D7F63A00349932 /* CKTranslationUnit+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKTranslationUnit+Private.m"; sourceTree = "<group>"; };
 		0518BA9C15D8615100349932 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		055BB2E81A83BDDF00E6AC23 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		055BB2EA1A83BDE900E6AC23 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
@@ -116,8 +108,6 @@
 		0598735415D75153006FF8D2 /* CKIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKIndex.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0598735B15D75153006FF8D2 /* CKToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKToken.h; sourceTree = "<group>"; };
 		0598735C15D75153006FF8D2 /* CKToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKToken.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		0598735D15D75153006FF8D2 /* CKToken+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKToken+Private.h"; sourceTree = "<group>"; };
-		0598735E15D75153006FF8D2 /* CKToken+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "CKToken+Private.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0598735F15D75153006FF8D2 /* CKTranslationUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTranslationUnit.h; sourceTree = "<group>"; };
 		0598736015D75153006FF8D2 /* CKTranslationUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKTranslationUnit.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0598737B15D751B8006FF8D2 /* CKTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CKTypes.h; path = ClangKit/CKTypes.h; sourceTree = "<group>"; };
@@ -125,8 +115,6 @@
 		05A73DAF15D9553D00AB75F4 /* CKCursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKCursor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05A73DBB15D95DA600AB75F4 /* CKSourceLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKSourceLocation.h; sourceTree = "<group>"; };
 		05A73DBC15D95DA600AB75F4 /* CKSourceLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKSourceLocation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		05A73DBF15D9645E00AB75F4 /* CKCursor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKCursor+Private.h"; sourceTree = "<group>"; };
-		05A73DC015D9645E00AB75F4 /* CKCursor+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKCursor+Private.m"; sourceTree = "<group>"; };
 		7B380B8D1AC97C4000285B4E /* ComnpletionTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComnpletionTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B380B901AC97C4100285B4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B380B911AC97C4100285B4E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -225,19 +213,16 @@
 		0598730F15D74DE2006FF8D2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				7BF6844E1ACCA60C00C06D22 /* Headers */,
 				050543CE15E063A100697329 /* CKCompletionChunk.m */,
 				050543D015E063A100697329 /* CKCompletionResult.m */,
+				05A73DAF15D9553D00AB75F4 /* CKCursor.m */,
 				0598734C15D75153006FF8D2 /* CKDiagnostic.m */,
 				0598735015D75153006FF8D2 /* CKFixIt.m */,
 				0598735415D75153006FF8D2 /* CKIndex.m */,
-				0598735C15D75153006FF8D2 /* CKToken.m */,
-				0598735E15D75153006FF8D2 /* CKToken+Private.m */,
-				0598736015D75153006FF8D2 /* CKTranslationUnit.m */,
-				0518B9EB15D7F63A00349932 /* CKTranslationUnit+Private.m */,
-				05A73DAF15D9553D00AB75F4 /* CKCursor.m */,
-				05A73DC015D9645E00AB75F4 /* CKCursor+Private.m */,
 				05A73DBC15D95DA600AB75F4 /* CKSourceLocation.m */,
+				0598735C15D75153006FF8D2 /* CKToken.m */,
+				0598736015D75153006FF8D2 /* CKTranslationUnit.m */,
+				7BF6844E1ACCA60C00C06D22 /* Headers */,
 			);
 			name = Classes;
 			path = ClangKit/Classes;
@@ -315,11 +300,8 @@
 				0598734F15D75153006FF8D2 /* CKFixIt.h */,
 				0598735315D75153006FF8D2 /* CKIndex.h */,
 				0598735B15D75153006FF8D2 /* CKToken.h */,
-				0598735D15D75153006FF8D2 /* CKToken+Private.h */,
 				0598735F15D75153006FF8D2 /* CKTranslationUnit.h */,
-				0518B9EA15D7F63A00349932 /* CKTranslationUnit+Private.h */,
 				05A73DAE15D9553D00AB75F4 /* CKCursor.h */,
-				05A73DBF15D9645E00AB75F4 /* CKCursor+Private.h */,
 				05A73DBB15D95DA600AB75F4 /* CKSourceLocation.h */,
 			);
 			name = Headers;
@@ -337,19 +319,16 @@
 				0598736B15D75153006FF8D2 /* CKIndex.h in Headers */,
 				7B380BC31AC984F800285B4E /* NSString+CE.h in Headers */,
 				0598737315D75153006FF8D2 /* CKToken.h in Headers */,
-				0598737515D75153006FF8D2 /* CKToken+Private.h in Headers */,
 				7B380BC91AC984F800285B4E /* NSImage+CE.h in Headers */,
 				0598737715D75153006FF8D2 /* CKTranslationUnit.h in Headers */,
 				7B380BBF1AC984F800285B4E /* NSFileManager+CE.h in Headers */,
 				7B380BC71AC984F800285B4E /* NSTextView+CE.h in Headers */,
-				0518B9EC15D7F63A00349932 /* CKTranslationUnit+Private.h in Headers */,
 				0518BAA115D869D700349932 /* ClangKit.h in Headers */,
 				0518BAA215D869D700349932 /* CKTypes.h in Headers */,
 				05A73DB015D9553D00AB75F4 /* CKCursor.h in Headers */,
 				7B380BC11AC984F800285B4E /* NSBundle+CE.h in Headers */,
 				05A73DBD15D95DA600AB75F4 /* CKSourceLocation.h in Headers */,
 				7B380BCB1AC984F800285B4E /* NSView+CE.h in Headers */,
-				05A73DC115D9645E00AB75F4 /* CKCursor+Private.h in Headers */,
 				050543D115E063A100697329 /* CKCompletionChunk.h in Headers */,
 				050543D315E063A100697329 /* CKCompletionResult.h in Headers */,
 			);
@@ -488,13 +467,10 @@
 				0598737415D75153006FF8D2 /* CKToken.m in Sources */,
 				7B380BCA1AC984F800285B4E /* NSImage+CE.m in Sources */,
 				7B380BCC1AC984F800285B4E /* NSView+CE.m in Sources */,
-				0598737615D75153006FF8D2 /* CKToken+Private.m in Sources */,
 				7B380BC01AC984F800285B4E /* NSFileManager+CE.m in Sources */,
 				0598737815D75153006FF8D2 /* CKTranslationUnit.m in Sources */,
-				0518B9ED15D7F63A00349932 /* CKTranslationUnit+Private.m in Sources */,
 				05A73DB115D9553D00AB75F4 /* CKCursor.m in Sources */,
 				05A73DBE15D95DA600AB75F4 /* CKSourceLocation.m in Sources */,
-				05A73DC215D9645E00AB75F4 /* CKCursor+Private.m in Sources */,
 				050543D215E063A100697329 /* CKCompletionChunk.m in Sources */,
 				050543D415E063A100697329 /* CKCompletionResult.m in Sources */,
 			);
@@ -557,8 +533,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -581,8 +559,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = c11;
@@ -602,6 +582,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_OBJC_UNUSED_IVARS = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -659,6 +640,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_OBJC_UNUSED_IVARS = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEFINES_MODULE = YES;

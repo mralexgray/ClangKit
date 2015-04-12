@@ -15,24 +15,17 @@
  * @abstract        Fix-it class
  */
 @interface CKFixIt: NSObject
-{
-@protected
-    
-    NSString * _string;
-    NSRange    _range;
-}
-
 /*!
  * @property        string
  * @abstract        The fix-it's string
  */
-@property( atomic, readonly ) NSString * string;
+@property (readonly) NSString * string;
 
 /*!
  * @property        range
  * @abstract        The fix-it's range
  */
-@property( atomic, readonly ) NSRange range;
+@property (readonly) NSRange range;
 
 /*!
  * @method          fixItsForDiagnostic:

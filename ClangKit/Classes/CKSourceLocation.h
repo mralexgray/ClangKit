@@ -26,25 +26,25 @@
  * @property        ptrData1
  * @abstract        Internal pointer data 1
  */
-@property( atomic, readonly ) void * ptrData1;
+@property (readonly) void * ptrData1;
 
 /*!
  * @property        ptrData2
  * @abstract        Internal pointer data 1
  */
-@property( atomic, readonly ) void * ptrData2;
+@property (readonly) void * ptrData2;
 
 /*!
  * @property        intData
  * @abstract        Internal integer data
  */
-@property( atomic, readonly ) unsigned int intData;
+@property (readonly) unsigned int intData;
 
 /*!
  * @property        fileName
  * @abstract        The source location's filename
  */
-@property( atomic, readonly ) NSString * fileName;
+@property (readonly) NSString * fileName;
 
 /*!
  * @method          sourceLocationWithPointerData1:pointerData2:intData:

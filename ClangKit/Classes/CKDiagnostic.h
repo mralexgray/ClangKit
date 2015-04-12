@@ -68,43 +68,43 @@ FOUNDATION_EXPORT CKDiagnosticSeverity CKDiagnosticSeverityFatal;
  * @property        cxDiagnostic
  * @abstract        Internal libclang diagnostic object
  */
-@property( atomic, readonly ) CXDiagnostic cxDiagnostic;
+@property (readonly) CXDiagnostic cxDiagnostic;
 
 /*!
  * @property        spelling
  * @abstract        Diagnostic's spelling
  */
-@property( atomic, readonly ) NSString * spelling;
+@property (readonly) NSString * spelling;
 
 /*!
  * @property        severity
  * @abstract        Diagnostic's severity
  */
-@property( atomic, readonly ) CKDiagnosticSeverity severity;
+@property (readonly) CKDiagnosticSeverity severity;
 
 /*!
  * @property        fixIts
  * @abstract        An array containing instances of 'CKFixIt'
  */
-@property( atomic, readonly ) NSArray * fixIts;
+@property (readonly) NSArray * fixIts;
 
 /*!
  * @property        line
  * @abstract        Line number for the diagnostic
  */
-@property( atomic, readonly ) NSUInteger line;
+@property (readonly) NSUInteger line;
 
 /*!
  * @property        column
  * @abstract        Column number for the diagnostic
  */
-@property( atomic, readonly ) NSUInteger column;
+@property (readonly) NSUInteger column;
 
 /*!
  * @property        range
  * @abstract        Range of the diagnostic, based on the source code
  */
-@property( atomic, readonly ) NSRange range;
+@property (readonly) NSRange range;
 
 /*!
  * @method          diagnosticsForTranslationUnit:

@@ -7,15 +7,12 @@
 @class CKTranslationUnit;
 
 @implementation CKCompletionResult
-
-@synthesize string      = _string;
-@synthesize cursorKind  = _cursorKind;
-@synthesize chunks      = _chunks;
+@synthesize string  = _string, cursorKind  = _cursorKind, chunks = _chunks;
 
 + ( instancetype )completionResultWithCXCompletionString: ( CXCompletionString )string cursorKind: ( CKCursorKind )cursorKind
 {
-    return [[self.alloc 
-         initWithCXCompletionString: string cursorKind: cursorKind ] autorelease ];
+    return [self.alloc 
+         initWithCXCompletionString: string cursorKind: cursorKind ];
 }
 
 - ( instancetype )initWithCXCompletionString: ( CXCompletionString )string cursorKind: ( CKCursorKind )cursorKind
@@ -49,11 +46,5 @@
     return self;
 }
 
-- ( void )dealloc
-{
-    [ _chunks  release ];
-    
-    [ super dealloc ];
-}
 
 @end

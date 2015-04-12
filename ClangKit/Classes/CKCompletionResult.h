@@ -15,31 +15,24 @@
  * @abstract        Completion result class
  */
 @interface CKCompletionResult: NSObject
-{
-@protected
-    
-    CXCompletionString _string;
-    CKCursorKind       _cursorKind;
-    NSArray          * _chunks;
-}
 
 /*!
  * @property        text
  * @abstract        The completion result's text
  */
-@property( atomic, readonly ) CXCompletionString * string;
+@property (readonly) CXCompletionString * string;
 
 /*!
  * @property        cursorKind
  * @abstract        The completion result's cursor kind
  */
-@property( atomic, readonly ) CKCursorKind cursorKind;
+@property (readonly) CKCursorKind cursorKind;
 
 /*!
  * @property        chunks
  * @abstract        The completion chunks (an array of CKCompletionChunk objects)
  */
-@property( atomic, readonly ) NSArray * chunks;
+@property (readonly) NSArray * chunks;
 
 /*!
  * @method          completionResultWithCXCompletionString:cursorKind:
