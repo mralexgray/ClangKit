@@ -7,11 +7,10 @@
 
 /// Whether to exclude declarations from the PCH file or not
 
-@property BOOL excludeDeclarationsFromPCH;
+@property (nonatomic) BOOL excludeDeclarationsFromPCH, displayDiagnostics;
 
 /// Whether to display diagnostics or not
 
-@property BOOL displayDiagnostics;
 
 /// Returns an autoreleased index object
 + (instancetype) index;

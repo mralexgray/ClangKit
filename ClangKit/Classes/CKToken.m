@@ -18,6 +18,8 @@ CKTokenKind CKTokenKindPunctuation = CXToken_Punctuation,
 
 + (NSArray*)tokensForTranslationUnit:(CKTranslationUnit*)translationUnit tokens:(void**)tokensPointer {
 
+  if (!translationUnit) return @[];
+
   CXFile file = clang_getFile(translationUnit.cxTranslationUnit, translationUnit.path.fileSystemRepresentation);
   CXSourceLocation startLocation = clang_getLocationForOffset(translationUnit.cxTranslationUnit, file, 0);
   CXSourceLocation endLocation   = clang_getLocationForOffset(translationUnit.cxTranslationUnit, file, (unsigned int)translationUnit.text.length);

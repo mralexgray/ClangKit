@@ -14,32 +14,18 @@
  * @class           CKTranslationUnit
  * @abstract        Translation unit class
  */
-@interface CKTranslationUnit : NSObject {
-@protected
-
-  NSString* _path;
-  NSString* _text;
-  CXTranslationUnit _cxTranslationUnit;
-  CKIndex* _index;
-  char** _args;
-  int _numArgs;
-  NSArray* _diagnostics;
-  NSArray* _tokens;
-  void* _tokensPointer;
-  void* _unsavedFile;
-  NSLock* _lock;
-}
+@interface CKTranslationUnit : NSObject
 
 @property (readonly) NSString* path;
 
-@property NSString* text;
+@property (nonatomic) NSString* text;
 
 @property (readonly) CKIndex* index;
 
 @property (readonly) NSArray* diagnostics, *tokens;
 
 /// Internal libclang translation unit object
-@property (readonly) CXTranslationUnit cxTranslationUnit;
+@property (readonly) struct CXTranslationUnitImpl * cxTranslationUnit;
 
 /// Internal libclang file object
 @property (readonly) CXFile cxFile;

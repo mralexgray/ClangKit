@@ -52,17 +52,6 @@ FOUNDATION_EXPORT CKDiagnosticSeverity CKDiagnosticSeverityFatal;
  * @abstract        Diagnostic class
  */
 @interface CKDiagnostic: NSObject
-{
-@protected
-    
-    CXDiagnostic            _cxDiagnostic;
-    NSString              * _spelling;
-    CKDiagnosticSeverity    _severity;
-    NSArray               * _fixIts;
-    NSUInteger              _line;
-    NSUInteger              _column;
-    NSRange                 _range;
-}
 
 /*!
  * @property        cxDiagnostic
@@ -75,6 +64,7 @@ FOUNDATION_EXPORT CKDiagnosticSeverity CKDiagnosticSeverityFatal;
  * @abstract        Diagnostic's spelling
  */
 @property (readonly) NSString * spelling;
+@property (nonatomic) NSString *file;
 
 /*!
  * @property        severity

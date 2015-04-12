@@ -24,7 +24,7 @@ FOUNDATION_EXPORT CKTokenKind CKTokenKindPunctuation,
 
 @interface CKToken: NSObject
 
-@property(readonly) NSString * spelling;
+@property (readonly) NSString * spelling;
 
 @property (readonly) CKTokenKind kind;
 
@@ -32,9 +32,9 @@ FOUNDATION_EXPORT CKTokenKind CKTokenKindPunctuation,
 
 @property (readonly) NSRange range;
 
-@property(readonly) CKCursor * cursor;
+@property (readonly) CKCursor * cursor;
 
-@property(readonly) CKSourceLocation * sourceLocation;
+@property (readonly) CKSourceLocation * sourceLocation;
 
 /*!
  * @method          tokensForTranslationUnit:tokens:

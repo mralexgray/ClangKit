@@ -8,6 +8,23 @@
 #import "CKCompletionResult.h"
 
 @implementation CKTranslationUnit
+{
+@protected
+
+//  NSString//* _path,
+//  * _text;
+//  struct CXTranslationUnitImpl * _cxTranslationUnit;
+//  CKIndex* _index;
+//  char** _args;
+  const char **_args;
+
+  int _numArgs;
+  NSArray* _diagnostics;
+  NSArray* _tokens;
+  void* _tokensPointer;
+  void* _unsavedFile;
+  NSLock* _lock;
+}
 
 @synthesize path = _path, cxTranslationUnit = _cxTranslationUnit, index = _index;
 
@@ -112,37 +129,32 @@
   CFRelease(uuid);
   CFRelease(uuidString);
 
-  if (mkstemp((char*)(tempFile.fileSystemRepresentation)) == -1) {
+  return  mkstemp((char*)(tempFile.fileSystemRepresentation)) == -1 ? nil :
 
-    return nil;
-  }
-
-  return [self initWithPath:tempFile text:text index:index args:args];
+              [self initWithPath:tempFile text:text index:index args:args];
 }
 
 - (void)dealloc {
   int i;
 
-  if (_tokens.count > 0) {
+  if (_tokens.count > 0)
     clang_disposeTokens(_cxTranslationUnit, _tokensPointer, (unsigned int)_tokens.count);
-  }
 
   clang_disposeTranslationUnit(_cxTranslationUnit);
 
-  for (i = 0; i < _numArgs; i++) {
-    free(_args[i]);
-  }
+//  for (i = 0; i < _numArgs; i++) free((void*)_args[i]);
 
   free((void*)_args);
 
   if (_unsavedFile != NULL) {
-    [[NSFileManager defaultManager] removeItemAtPath:_path error:NULL];
+//    [[NSFileManager defaultManager] removeItemAtPath:_path error:NULL];
 
     free(_unsavedFile);
   }
 }
 
 - (void)reparse {
+
   @synchronized(self) {
     [_lock lock];
 
@@ -163,50 +175,51 @@
 
     [_lock unlock];
 
-    [self tokens];
-    [self diagnostics];
+//    [self tokens];
+//    [self diagnostics];
   }
 }
 
 - (NSArray*)diagnostics {
-  @synchronized(self) {
-    if (_diagnostics == nil) {
-      [_lock lock];
 
-      _diagnostics = [CKDiagnostic diagnosticsForTranslationUnit:self];
 
-      [_lock unlock];
-    }
+//  @synchronized(self) {
 
-    return _diagnostics;
-  }
+    return _diagnostics = // ?: ({
+//      [_lock lock];
+
+      _diagnostics ?: !self ? nil : [CKDiagnostic diagnosticsForTranslationUnit:self];
+
+//      [_lock unlock];
+
+//    }), _diagnostics;
+//  }
 }
 
 - (NSArray*)tokens {
-  @synchronized(self) {
-    if (_tokens == nil) {
-      [_lock lock];
+//  @synchronized(self) {
+//    return _tokens ?: ({
+//      [_lock lock];
 
-      _tokens = [CKToken tokensForTranslationUnit:self tokens:&_tokensPointer];
+      return _tokens = _tokens ?: !self ? nil : [CKToken tokensForTranslationUnit:self tokens:&_tokensPointer];
+//
+//      [_lock unlock];
 
-      [_lock unlock];
-    }
-
-    return _tokens;
-  }
+//    }), _tokens;
+//  }
 }
 
-- (NSString*)text {
-  @synchronized(self) {
-    return _text;
-  }
-}
+//- (NSString*)text {
+//  @synchronized(self) {
+//    return _text;
+//  }
+//}
 
 - (void)setText:(NSString*)text {
+
   @synchronized(self) {
-    if (_unsavedFile == NULL) {
-      _unsavedFile = calloc(sizeof(struct CXUnsavedFile), 1);
-    }
+
+    _unsavedFile = _unsavedFile ?: calloc(sizeof(struct CXUnsavedFile), 1);
 
     if (_unsavedFile != NULL) {
       if (_text != text) {
@@ -304,47 +317,38 @@
     if (text == nil) {
       _text = [NSString stringWithContentsOfFile:_path encoding:NSUTF8StringEncoding error:NULL];
 
-      if (_text.length == 0) {
+      if (!_text.length) return nil;
 
-        return nil;
-      }
     } else {
       _text = text;
-      _unsavedFile = calloc(sizeof(struct CXUnsavedFile), 1);
+      if ((_unsavedFile = calloc(sizeof(struct CXUnsavedFile), 1)) == NULL) return nil;
 
-      if (_unsavedFile == NULL) {
-
-        return nil;
-      }
+      [_text writeToFile:_path atomically:YES encoding:NSUTF8StringEncoding  error:nil];
 
       ((struct CXUnsavedFile*)_unsavedFile)->Filename = _path.fileSystemRepresentation;
       ((struct CXUnsavedFile*)_unsavedFile)->Contents = _text.UTF8String;
       ((struct CXUnsavedFile*)_unsavedFile)->Length = _text.length;
     }
 
-    if (args.count > 0) {
-      _args = (char**)calloc(sizeof(char*), args.count);
+    if (args.count) {
 
-      if (_args == NULL) {
-
-        return nil;
-      }
+      if ((_args =  (const char**)calloc(sizeof(const char*), args.count)) == NULL) return nil;
 
       i = 0;
 
+      printf("args: %s\n", [args description].UTF8String);
+      
       for (arg in args) {
-        if ([arg isKindOfClass:[NSString class]] == NO) {
-          continue;
-        }
 
-        _args[i] = calloc(sizeof(char), strlen(((NSString*)arg).UTF8String) + 1);
+        if (![arg isKindOfClass:NSString.class]) continue;
 
-        if (_args[i] == NULL) {
+        _args[i] = [arg UTF8String];
 
-          return nil;
-        }
+        // calloc(sizeof(char), strlen(((NSString*)arg).UTF8String) + 1);
 
-        strlcpy((char*)_args[i], ((NSString*)arg).UTF8String, strlen(((NSString*)arg).UTF8String) + 1);
+        if (_args[i] == NULL) return nil;
+
+//        strlcpy((char*)_args[i], ((NSString*)arg).UTF8String, strlen(((NSString*)arg).UTF8String) + 1);
 
         i++;
 
@@ -358,16 +362,17 @@
       (const char* const*)_args,
       _numArgs,
       _unsavedFile,
-      (_unsavedFile == NULL) ? 0 : 1,
-      clang_defaultEditingTranslationUnitOptions() | CXTranslationUnit_DetailedPreprocessingRecord | CXTranslationUnit_PrecompiledPreamble | CXTranslationUnit_CacheCompletionResults | CXTranslationUnit_Incomplete);
+      _unsavedFile != NULL,
+      clang_defaultEditingTranslationUnitOptions() |
+      CXTranslationUnit_DetailedPreprocessingRecord |
+      CXTranslationUnit_PrecompiledPreamble |
+      CXTranslationUnit_CacheCompletionResults |
+      CXTranslationUnit_Incomplete);
 
-    if (_cxTranslationUnit == NULL) {
+    if (_cxTranslationUnit == NULL) return nil;
 
-      return nil;
-    }
-
-    [self tokens];
-    [self diagnostics];
+//    [self tokens];
+//    [self diagnostics];
   }
 
   return self;

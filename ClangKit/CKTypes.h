@@ -35,7 +35,7 @@ typedef void * CXIndex;
  * @typedef         CXTranslationUnit
  * @abstract        libclang type for translation unit objects.
  */
-typedef void * CXTranslationUnit;
+//typedef void * CXTranslationUnit;
 
 /*!
  * @typedef         CXFile
