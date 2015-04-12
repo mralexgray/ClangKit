@@ -14,27 +14,38 @@ CKDiagnosticSeverity CKDiagnosticSeverityError = CXDiagnostic_Error;
 CKDiagnosticSeverity CKDiagnosticSeverityFatal = CXDiagnostic_Fatal;
 
 @implementation CKDiagnostic
+//{
+//@protected
 
-@synthesize cxDiagnostic = _cxDiagnostic, spelling = _spelling, severity = _severity, fixIts = _fixIts, line = _line, column = _column, range = _range;
+//    CXDiagnostic            _cxDiagnostic;
+//    NSString              * _spelling;
+//    CKDiagnosticSeverity    _severity;
+//    NSArray               * _fixIts;
+//    NSUInteger              _line;
+//    NSUInteger              _column;
+//    NSRange                 _range;
+//}
+
+@synthesize cxDiagnostic = _cxDiagnostic, spelling = _spelling, severity = _severity, fixIts = _fixIts, line = _line, column = _column, range = _range, file =_file;
 
 + (NSArray*)diagnosticsForTranslationUnit:(CKTranslationUnit*)translationUnit {
-  unsigned int numDiagnostics;
-  unsigned int i;
-  NSMutableArray* diagnostics;
+
+  if (!translationUnit) return @[];
+
   CKDiagnostic* diagnostic;
+  NSUInteger numDiagnostics = clang_getNumDiagnostics(translationUnit.cxTranslationUnit);
+  NSMutableArray* diagnostics = @[].mutableCopy;// NSMutableArray arrayWithCapacity:(NSUInteger)numDiagnostics];
 
-  numDiagnostics = clang_getNumDiagnostics(translationUnit.cxTranslationUnit);
-  diagnostics = [NSMutableArray arrayWithCapacity:(NSUInteger)numDiagnostics];
-
-  for (i = 0; i < numDiagnostics; i++) {
+  for (unsigned int i = 0; i < numDiagnostics; i++) {
     diagnostic = [CKDiagnostic diagnosticWithTranslationUnit:translationUnit index:i];
 
     if (diagnostic != nil) {
+      diagnostic.file = [translationUnit.path copy];
       [diagnostics addObject:diagnostic];
     }
   }
 
-  return [NSArray arrayWithArray:diagnostics];
+  return [diagnostics copy];
 }
 
 + (instancetype)diagnosticWithTranslationUnit:(CKTranslationUnit*)translationUnit index:(NSUInteger)index {
