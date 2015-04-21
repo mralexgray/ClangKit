@@ -11,19 +11,13 @@
 {
 @protected
 
-//  NSString//* _path,
-//  * _text;
-//  struct CXTranslationUnitImpl * _cxTranslationUnit;
-//  CKIndex* _index;
-//  char** _args;
+//  NSString//* _path, * _text; struct CXTranslationUnitImpl * _cxTranslationUnit; CKIndex* _index; char** _args;
   const char **_args;
-
-  int _numArgs;
-  NSArray* _diagnostics;
-  NSArray* _tokens;
-  void* _tokensPointer;
-  void* _unsavedFile;
-  NSLock* _lock;
+        int    _numArgs;
+        
+  _List    _diagnostics,     _tokens;
+  _Void  * _tokensPointer, * _unsavedFile;
+  NSLock * _lock;
 }
 
 @synthesize path = _path, cxTranslationUnit = _cxTranslationUnit, index = _index;
@@ -91,9 +85,6 @@
 - (instancetype)initWithText:(NSString*)text language:(CKLanguage)language index:(CKIndex*)index args:(NSArray*)args {
   CFUUIDRef uuid;
   CFStringRef uuidString;
-  NSString* extension;
-  NSString* tempFileName;
-  NSString* tempFile;
   char buffer[40];
 
   uuid = CFUUIDCreate(kCFAllocatorDefault);
@@ -102,29 +93,15 @@
   memset(buffer, 0, 40);
   CFStringGetCString(uuidString, buffer, 40, kCFStringEncodingUTF8);
 
-  switch (language) {
-    case CKLanguageC:
-      extension = @".c";
-      break;
-    case CKLanguageCPP:
-      extension = @".cpp";
-      break;
-    case CKLanguageObjC:
-      extension = @".m";
-      break;
-    case CKLanguageObjCPP:
-      extension = @".mm";
-      break;
-    case CKLanguageNone:
-      extension = @"";
-      break;
-    default:
-      extension = @"";
-      break;
-  }
+  NSString* extension =
+  language == CKLanguageC ? @".c" :
+  language == CKLanguageCPP ? @".cpp" :
+  language == CKLanguageObjC ? @".m" :
+  language == CKLanguageObjCPP ? @".mm" :
+  language == CKLanguageNone ? @"" : @"";
 
-  tempFileName = [NSString stringWithFormat:@"ClangKit-%s%@", buffer, extension];
-  tempFile = [NSTemporaryDirectory() stringByAppendingPathComponent:tempFileName];
+
+  _Text tempFile = [NSTemporaryDirectory() withPath:$(@"ClangKit-%s%@", buffer, extension)];
 
   CFRelease(uuid);
   CFRelease(uuidString);
@@ -135,10 +112,10 @@
 }
 
 - (void)dealloc {
+
   int i;
 
-  if (_tokens.count > 0)
-    clang_disposeTokens(_cxTranslationUnit, _tokensPointer, (unsigned int)_tokens.count);
+  if (_tokens.count > 0) clang_disposeTokens(_cxTranslationUnit, _tokensPointer, (unsigned int)_tokens.count);
 
   clang_disposeTranslationUnit(_cxTranslationUnit);
 
@@ -147,8 +124,8 @@
   free((void*)_args);
 
   if (_unsavedFile != NULL) {
-//    [[NSFileManager defaultManager] removeItemAtPath:_path error:NULL];
 
+//    [FM removeItemAtPath:_path error:NULL];
     free(_unsavedFile);
   }
 }
@@ -180,46 +157,21 @@
   }
 }
 
-- (NSArray*)diagnostics {
+- (NSArray*)diagnostics { return _diagnostics = _diagnostics ?: [CKDiagnostic diagnosticsForTranslationUnit:self]; }
 
+//  @synchronized(self) { if (_diagnostics == nil) { [_lock lock]; [_lock unlock]; } return _diagnostics; } }
 
-//  @synchronized(self) {
+- (NSArray*)tokens { return _tokens = _tokens ?: [CKToken tokensForTranslationUnit:self tokens:&_tokensPointer]; }
 
-    return _diagnostics = // ?: ({
-//      [_lock lock];
+//  @synchronized(self) { if (_tokens == nil) { [_lock lock]; _tokens = ; [_lock unlock]; } return _tokens; } }
 
-      _diagnostics ?: !self ? nil : [CKDiagnostic diagnosticsForTranslationUnit:self];
-
-//      [_lock unlock];
-
-//    }), _diagnostics;
-//  }
-}
-
-- (NSArray*)tokens {
-//  @synchronized(self) {
-//    return _tokens ?: ({
-//      [_lock lock];
-
-      return _tokens = _tokens ?: !self ? nil : [CKToken tokensForTranslationUnit:self tokens:&_tokensPointer];
-//
-//      [_lock unlock];
-
-//    }), _tokens;
-//  }
-}
-
-//- (NSString*)text {
-//  @synchronized(self) {
-//    return _text;
-//  }
-//}
+//- (NSString*)text { @synchronized(self) { return _text; } }
 
 - (void)setText:(NSString*)text {
-
   @synchronized(self) {
-
-    _unsavedFile = _unsavedFile ?: calloc(sizeof(struct CXUnsavedFile), 1);
+    if (_unsavedFile == NULL) {
+      _unsavedFile = calloc(sizeof(struct CXUnsavedFile), 1);
+    }
 
     if (_unsavedFile != NULL) {
       if (_text != text) {
@@ -241,26 +193,16 @@
 }
 
 - (CXFile)cxFile {
-  @synchronized(self) {
-    return clang_getFile(_cxTranslationUnit, _path.fileSystemRepresentation);
-  }
+
+  @synchronized(self) { return clang_getFile(_cxTranslationUnit, _path.fileSystemRepresentation); }
 }
 
-- (NSString*)description {
-  NSString* description;
-
-  description = [super description];
-  description = [description stringByAppendingFormat:@"%@", self.path];
-
-  return description;
-}
+- (NSString*)description { return [super.description withString:self.path]; }
 
 - (NSArray*)completionResultsForLine:(NSUInteger)line column:(NSUInteger)column {
-  NSMutableArray* array;
+
   CXCodeCompleteResults* results;
   unsigned i;
-  CXCompletionResult result;
-  CKCompletionResult* completionResult;
 
   [_lock lock];
 
@@ -270,111 +212,90 @@
     ((struct CXUnsavedFile*)_unsavedFile)->Length = _text.length;
   }
 
-  results = clang_codeCompleteAt(
-    _cxTranslationUnit,
-    _path.fileSystemRepresentation,
-    (unsigned int)line,
-    (unsigned int)column,
-    _unsavedFile,
-    (_unsavedFile == NULL) ? 0 : 1,
-    clang_defaultCodeCompleteOptions());
+  results = clang_codeCompleteAt( _cxTranslationUnit, _path.fileSystemRepresentation,
+                                (unsigned int)line,
+                                (unsigned int)column,
+                                _unsavedFile,
+                                _unsavedFile == NULL ? 0 : 1, clang_defaultCodeCompleteOptions());
 
-  if (results == NULL) {
-    [_lock unlock];
+  if (results == NULL) return [_lock unlock], nil;
 
-    return nil;
-  }
-
-  array = [NSMutableArray arrayWithCapacity:(NSUInteger)(results->NumResults)];
+  NSMutableArray* array = @[].mC; // [NSMutableArray arrayWithCapacity:(NSUInteger)(results->NumResults)];
 
   for (i = 0; i < results->NumResults; i++) {
-    result = results->Results[i];
-    completionResult = [CKCompletionResult completionResultWithCXCompletionString:result.CompletionString cursorKind:(CKCursorKind)result.CursorKind];
 
-    if (completionResult != nil) {
-      [array addObject:completionResult];
-    }
+    CXCompletionResult result = results->Results[i];
+
+    CKCompletionResult* completionResult = [CKCompletionResult completionResultWithCXCompletionString:result.CompletionString cursorKind:(CKCursorKind)result.CursorKind];
+
+    if (!!completionResult) [array addObject:completionResult];
   }
 
   clang_disposeCodeCompleteResults(results);
 
   [_lock unlock];
 
-  return [NSArray arrayWithArray:array];
+  return array.copy;
 }
 
 // PRIVATE
 
-- (id)initWithPath:(NSString*)path text:(NSString*)text index:(CKIndex*)index args:(NSArray*)args {
-  NSUInteger i;
-  id arg;
+- initWithPath:(NSString*)path text:(NSString*)text index:(CKIndex*)index args:(NSArray*)args { SUPERINIT;
 
-  if ((self = [self init])) {
-    _lock = [NSLock new];
-    _path = [path copy];
-    _index = (index == nil) ? [CKIndex new] : index;
+  NSUInteger i; id arg;
 
-    if (text == nil) {
-      _text = [NSString stringWithContentsOfFile:_path encoding:NSUTF8StringEncoding error:NULL];
 
-      if (!_text.length) return nil;
+  _lock = [NSLock new];
+  _path = path.copy;
+  _index = index ?: CKIndex.new;
 
-    } else {
-      _text = text;
-      if ((_unsavedFile = calloc(sizeof(struct CXUnsavedFile), 1)) == NULL) return nil;
+  if (!text &&
+    !(_text = [NSString stringWithContentsOfFile:_path encoding:NSUTF8StringEncoding error:NULL]).length)
+      return nil;
 
-      [_text writeToFile:_path atomically:YES encoding:NSUTF8StringEncoding  error:nil];
+  else {
 
-      ((struct CXUnsavedFile*)_unsavedFile)->Filename = _path.fileSystemRepresentation;
-      ((struct CXUnsavedFile*)_unsavedFile)->Contents = _text.UTF8String;
-      ((struct CXUnsavedFile*)_unsavedFile)->Length = _text.length;
-    }
+    _text = text;
+    if ((_unsavedFile = calloc(sizeof(struct CXUnsavedFile), 1)) == NULL) return nil;
 
-    if (args.count) {
-
-      if ((_args =  (const char**)calloc(sizeof(const char*), args.count)) == NULL) return nil;
-
-      i = 0;
-
-      printf("args: %s\n", [args description].UTF8String);
-      
-      for (arg in args) {
-
-        if (![arg isKindOfClass:NSString.class]) continue;
-
-        _args[i] = [arg UTF8String];
-
-        // calloc(sizeof(char), strlen(((NSString*)arg).UTF8String) + 1);
-
-        if (_args[i] == NULL) return nil;
-
-//        strlcpy((char*)_args[i], ((NSString*)arg).UTF8String, strlen(((NSString*)arg).UTF8String) + 1);
-
-        i++;
-
-        _numArgs = (int)i;
-      }
-    }
-
-    _cxTranslationUnit = clang_parseTranslationUnit(
-      _index.cxIndex,
-      _path.fileSystemRepresentation,
-      (const char* const*)_args,
-      _numArgs,
-      _unsavedFile,
-      _unsavedFile != NULL,
-      clang_defaultEditingTranslationUnitOptions() |
-      CXTranslationUnit_DetailedPreprocessingRecord |
-      CXTranslationUnit_PrecompiledPreamble |
-      CXTranslationUnit_CacheCompletionResults |
-      CXTranslationUnit_Incomplete);
-
-    if (_cxTranslationUnit == NULL) return nil;
-
-//    [self tokens];
-//    [self diagnostics];
+    ((struct CXUnsavedFile*)_unsavedFile)->Filename = _path.fileSystemRepresentation;
+    ((struct CXUnsavedFile*)_unsavedFile)->Contents = _text.UTF8String;
+    ((struct CXUnsavedFile*)_unsavedFile)->Length = _text.length;
   }
 
+  if (args.count > 0) {
+
+    if ((_args = (const char**)calloc(sizeof(char*), args.count)) == NULL) return nil;
+
+    i = 0;
+
+    for (arg in args) {
+
+      if (![arg isKindOfClass:NSString.class]) continue;
+
+      if ((_args[i] = calloc(sizeof(char), strlen(((NSString*)arg).UTF8String) + 1)) == NULL) return nil;
+
+      strlcpy((char*)_args[i], ((NSString*)arg).UTF8String, strlen(((NSString*)arg).UTF8String) + 1);
+
+      i++;
+
+      _numArgs = (int)i;
+    }
+  }
+  _cxTranslationUnit = clang_parseTranslationUnit( _index.cxIndex, _path.fileSystemRepresentation,
+                                                 (const char* const*)_args, _numArgs,
+                                                  _unsavedFile,
+                                                  _unsavedFile == NULL ? 0 : 1,
+                                                  clang_defaultEditingTranslationUnitOptions()  |
+                                                  CXTranslationUnit_DetailedPreprocessingRecord |
+                                                  CXTranslationUnit_PrecompiledPreamble         |
+                                                  CXTranslationUnit_CacheCompletionResults      |
+                                                  CXTranslationUnit_Incomplete);
+
+  if (_cxTranslationUnit == NULL) return nil;
+
+//  [self tokens];
+//  [self diagnostics];
   return self;
 }
 

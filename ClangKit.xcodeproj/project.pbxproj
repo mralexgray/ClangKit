@@ -39,17 +39,12 @@
 		7B380B971AC97C4100285B4E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B380B961AC97C4100285B4E /* Images.xcassets */; };
 		7B380B9A1AC97C4100285B4E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B380B981AC97C4100285B4E /* MainMenu.xib */; };
 		7B380BAF1AC9804800285B4E /* ClangKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059872EE15D74D09006FF8D2 /* ClangKit.framework */; };
-		7B380BBF1AC984F800285B4E /* NSFileManager+CE.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B380BB01AC984F700285B4E /* NSFileManager+CE.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7B380BBF1AC984F800285B4E /* CE+Categories.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B380BB01AC984F700285B4E /* CE+Categories.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B380BC01AC984F800285B4E /* NSFileManager+CE.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B380BB11AC984F700285B4E /* NSFileManager+CE.m */; };
-		7B380BC11AC984F800285B4E /* NSBundle+CE.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B380BB21AC984F700285B4E /* NSBundle+CE.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B380BC21AC984F800285B4E /* NSBundle+CE.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B380BB31AC984F700285B4E /* NSBundle+CE.m */; };
-		7B380BC31AC984F800285B4E /* NSString+CE.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B380BB41AC984F700285B4E /* NSString+CE.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B380BC41AC984F800285B4E /* NSString+CE.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B380BB51AC984F700285B4E /* NSString+CE.m */; };
-		7B380BC71AC984F800285B4E /* NSTextView+CE.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B380BB81AC984F700285B4E /* NSTextView+CE.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B380BC81AC984F800285B4E /* NSTextView+CE.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B380BB91AC984F700285B4E /* NSTextView+CE.m */; };
-		7B380BC91AC984F800285B4E /* NSImage+CE.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B380BBA1AC984F700285B4E /* NSImage+CE.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B380BCA1AC984F800285B4E /* NSImage+CE.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B380BBB1AC984F700285B4E /* NSImage+CE.m */; };
-		7B380BCB1AC984F800285B4E /* NSView+CE.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B380BBC1AC984F700285B4E /* NSView+CE.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B380BCC1AC984F800285B4E /* NSView+CE.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B380BBD1AC984F700285B4E /* NSView+CE.m */; };
 		7B99A5931ADA65CC0031A3E3 /* libclang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B99A5901ADA65CC0031A3E3 /* libclang.dylib */; };
 		7B99A5941ADA65CC0031A3E3 /* libLLVM-3.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B99A5911ADA65CC0031A3E3 /* libLLVM-3.5.dylib */; };
@@ -86,9 +81,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		050543CD15E063A100697329 /* CKCompletionChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKCompletionChunk.h; sourceTree = "<group>"; };
+		050543CD15E063A100697329 /* CKCompletionChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CKCompletionChunk.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		050543CE15E063A100697329 /* CKCompletionChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKCompletionChunk.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		050543CF15E063A100697329 /* CKCompletionResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKCompletionResult.h; sourceTree = "<group>"; };
+		050543CF15E063A100697329 /* CKCompletionResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CKCompletionResult.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		050543D015E063A100697329 /* CKCompletionResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKCompletionResult.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0518B9D015D7577D00349932 /* ClangKitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ClangKitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0518B9D515D7577D00349932 /* ClangKitTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ClangKitTest.m; path = ClangKitTest/ClangKitTest.m; sourceTree = "<group>"; };
@@ -103,39 +98,34 @@
 		059872F915D74D09006FF8D2 /* ClangKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ClangKit-Info.plist"; path = "ClangKit/ClangKit-Info.plist"; sourceTree = "<group>"; };
 		059872FD15D74D09006FF8D2 /* ClangKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ClangKit-Prefix.pch"; path = "ClangKit/ClangKit-Prefix.pch"; sourceTree = "<group>"; };
 		059872FE15D74D09006FF8D2 /* ClangKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ClangKit.h; path = ClangKit/ClangKit.h; sourceTree = "<group>"; };
-		0598734B15D75153006FF8D2 /* CKDiagnostic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKDiagnostic.h; sourceTree = "<group>"; };
+		0598734B15D75153006FF8D2 /* CKDiagnostic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CKDiagnostic.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0598734C15D75153006FF8D2 /* CKDiagnostic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKDiagnostic.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		0598734F15D75153006FF8D2 /* CKFixIt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKFixIt.h; sourceTree = "<group>"; };
+		0598734F15D75153006FF8D2 /* CKFixIt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CKFixIt.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0598735015D75153006FF8D2 /* CKFixIt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKFixIt.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0598735315D75153006FF8D2 /* CKIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKIndex.h; sourceTree = "<group>"; };
 		0598735415D75153006FF8D2 /* CKIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKIndex.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		0598735B15D75153006FF8D2 /* CKToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKToken.h; sourceTree = "<group>"; };
+		0598735B15D75153006FF8D2 /* CKToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CKToken.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0598735C15D75153006FF8D2 /* CKToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKToken.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0598735F15D75153006FF8D2 /* CKTranslationUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTranslationUnit.h; sourceTree = "<group>"; };
 		0598736015D75153006FF8D2 /* CKTranslationUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKTranslationUnit.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		0598737B15D751B8006FF8D2 /* CKTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CKTypes.h; path = ClangKit/CKTypes.h; sourceTree = "<group>"; };
-		05A73DAE15D9553D00AB75F4 /* CKCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKCursor.h; sourceTree = "<group>"; };
+		0598737B15D751B8006FF8D2 /* CKTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = CKTypes.h; path = ClangKit/CKTypes.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		05A73DAE15D9553D00AB75F4 /* CKCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CKCursor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		05A73DAF15D9553D00AB75F4 /* CKCursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKCursor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		05A73DBB15D95DA600AB75F4 /* CKSourceLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKSourceLocation.h; sourceTree = "<group>"; };
+		05A73DBB15D95DA600AB75F4 /* CKSourceLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CKSourceLocation.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		05A73DBC15D95DA600AB75F4 /* CKSourceLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKSourceLocation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7B380B8D1AC97C4000285B4E /* ComnpletionTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComnpletionTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B380B901AC97C4100285B4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B380B911AC97C4100285B4E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		7B380B921AC97C4100285B4E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7B380B921AC97C4100285B4E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7B380B941AC97C4100285B4E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7B380B961AC97C4100285B4E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7B380B991AC97C4100285B4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		7B380BB01AC984F700285B4E /* NSFileManager+CE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+CE.h"; sourceTree = "<group>"; };
+		7B380BB01AC984F700285B4E /* CE+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CE+Categories.h"; sourceTree = "<group>"; };
 		7B380BB11AC984F700285B4E /* NSFileManager+CE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+CE.m"; sourceTree = "<group>"; };
-		7B380BB21AC984F700285B4E /* NSBundle+CE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+CE.h"; sourceTree = "<group>"; };
 		7B380BB31AC984F700285B4E /* NSBundle+CE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+CE.m"; sourceTree = "<group>"; };
-		7B380BB41AC984F700285B4E /* NSString+CE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CE.h"; sourceTree = "<group>"; };
 		7B380BB51AC984F700285B4E /* NSString+CE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSString+CE.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		7B380BB81AC984F700285B4E /* NSTextView+CE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+CE.h"; sourceTree = "<group>"; };
 		7B380BB91AC984F700285B4E /* NSTextView+CE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+CE.m"; sourceTree = "<group>"; };
-		7B380BBA1AC984F700285B4E /* NSImage+CE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CE.h"; sourceTree = "<group>"; };
 		7B380BBB1AC984F700285B4E /* NSImage+CE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSImage+CE.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		7B380BBC1AC984F700285B4E /* NSView+CE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+CE.h"; sourceTree = "<group>"; };
 		7B380BBD1AC984F700285B4E /* NSView+CE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+CE.m"; sourceTree = "<group>"; };
 		7B99A5901ADA65CC0031A3E3 /* libclang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libclang.dylib; path = ../../../../../../usr/local/Cellar/llvm/3.5.1/lib/libclang.dylib; sourceTree = "<group>"; };
 		7B99A5911ADA65CC0031A3E3 /* libLLVM-3.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libLLVM-3.5.dylib"; path = "../../../../../../usr/local/Cellar/llvm/3.5.1/lib/libLLVM-3.5.dylib"; sourceTree = "<group>"; };
@@ -225,6 +215,7 @@
 		0598730F15D74DE2006FF8D2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7BF6844E1ACCA60C00C06D22 /* Headers */,
 				050543CE15E063A100697329 /* CKCompletionChunk.m */,
 				050543D015E063A100697329 /* CKCompletionResult.m */,
 				05A73DAF15D9553D00AB75F4 /* CKCursor.m */,
@@ -234,7 +225,6 @@
 				05A73DBC15D95DA600AB75F4 /* CKSourceLocation.m */,
 				0598735C15D75153006FF8D2 /* CKToken.m */,
 				0598736015D75153006FF8D2 /* CKTranslationUnit.m */,
-				7BF6844E1ACCA60C00C06D22 /* Headers */,
 			);
 			name = Classes;
 			path = ClangKit/Classes;
@@ -293,12 +283,7 @@
 		7BF6844D1ACCA5F600C06D22 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				7B380BB01AC984F700285B4E /* NSFileManager+CE.h */,
-				7B380BB21AC984F700285B4E /* NSBundle+CE.h */,
-				7B380BB41AC984F700285B4E /* NSString+CE.h */,
-				7B380BB81AC984F700285B4E /* NSTextView+CE.h */,
-				7B380BBA1AC984F700285B4E /* NSImage+CE.h */,
-				7B380BBC1AC984F700285B4E /* NSView+CE.h */,
+				7B380BB01AC984F700285B4E /* CE+Categories.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -329,18 +314,13 @@
 				0598736315D75153006FF8D2 /* CKDiagnostic.h in Headers */,
 				0598736715D75153006FF8D2 /* CKFixIt.h in Headers */,
 				0598736B15D75153006FF8D2 /* CKIndex.h in Headers */,
-				7B380BC31AC984F800285B4E /* NSString+CE.h in Headers */,
 				0598737315D75153006FF8D2 /* CKToken.h in Headers */,
-				7B380BC91AC984F800285B4E /* NSImage+CE.h in Headers */,
 				0598737715D75153006FF8D2 /* CKTranslationUnit.h in Headers */,
-				7B380BBF1AC984F800285B4E /* NSFileManager+CE.h in Headers */,
-				7B380BC71AC984F800285B4E /* NSTextView+CE.h in Headers */,
+				7B380BBF1AC984F800285B4E /* CE+Categories.h in Headers */,
 				0518BAA115D869D700349932 /* ClangKit.h in Headers */,
 				0518BAA215D869D700349932 /* CKTypes.h in Headers */,
 				05A73DB015D9553D00AB75F4 /* CKCursor.h in Headers */,
-				7B380BC11AC984F800285B4E /* NSBundle+CE.h in Headers */,
 				05A73DBD15D95DA600AB75F4 /* CKSourceLocation.h in Headers */,
-				7B380BCB1AC984F800285B4E /* NSView+CE.h in Headers */,
 				050543D115E063A100697329 /* CKCompletionChunk.h in Headers */,
 				050543D315E063A100697329 /* CKCompletionResult.h in Headers */,
 			);
@@ -552,6 +532,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(USER_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -579,6 +560,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(USER_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -612,7 +594,7 @@
 				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/llvm/3.5.1/lib;
 				OTHER_LDFLAGS = (
 					"-framework",
-					AtoZIO,
+					ToolKit,
 					"-lLLVMBitReader",
 					"-lLLVMCore",
 					"-lLLVMMC",
@@ -673,7 +655,7 @@
 				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/llvm/3.5.1/lib;
 				OTHER_LDFLAGS = (
 					"-framework",
-					AtoZIO,
+					ToolKit,
 					"-lLLVMBitReader",
 					"-lLLVMCore",
 					"-lLLVMMC",

@@ -2,19 +2,21 @@
 /* $Id$ */
 
 /*!
- * @header          CKCursor.h
- * @copyright       (c) 2010-2014 - Jean-David Gadina - www.xs-labs.com
- * @author          Jean-David Gadina - www.xs-labs.com
- * @abstract        ClangKit cursor class
+	@header          CKCursor.h
+	@copyright       (c) 2010-2014 - Jean-David Gadina - www.xs-labs.com
+	@author          Jean-David Gadina - www.xs-labs.com
+	@abstract        ClangKit cursor class
  */
 
 /*!
- * @typedef         CKCursorKind
- * @abstract        Cursor kind
+	@typedef         CKCursorKind
+	@abstract        Cursor kind
  */
-typedef NSInteger CKCursorKind;
+//typedef NSInteger CKCursorKind;
 
-FOUNDATION_EXPORT CKCursorKind CKCursorKindUnexposedDecl,
+//FOUNDATION_EXPORT
+
+JREnumDeclare(CKCursorKind, CKCursorKindUnexposedDecl,
                                CKCursorKindStructDecl,
                                CKCursorKindUnionDecl,
                                CKCursorKindClassDecl,
@@ -173,32 +175,32 @@ FOUNDATION_EXPORT CKCursorKind CKCursorKindUnexposedDecl,
                                CKCursorKindMacroInstantiation,
                                CKCursorKindInclusionDirective,
                                CKCursorKindFirstPreprocessing,
-                               CKCursorKindLastPreprocessing;
+                               CKCursorKindLastPreprocessing);
 
 @class CKTranslationUnit;
 @class CKSourceLocation;
 
 /*!
- * @class           CKCursor
- * @abstract        Cursor class
+	@class           CKCursor
+	@abstract        Cursor class
  */
 @interface CKCursor : NSObject
 
 /*!
- * @property        kind
- * @abstract        The cursor kind
+	@property        kind
+	@abstract        The cursor kind
  */
 @property (readonly) CKCursorKind kind;
 
 /*!
- * @property        displayName
- * @abstract        The cursor's display name
+	@property        displayName
+	@abstract        The cursor's display name
  */
 @property(readonly) NSString * displayName;
 
 /*!
- * @property        kindSpelling
- * @abstract        The cursor kind's spelling
+	@property        kindSpelling
+	@abstract        The cursor kind's spelling
  */
 @property (readonly) NSString * kindSpelling;
 
@@ -238,58 +240,58 @@ FOUNDATION_EXPORT CKCursorKind CKCursorKindUnexposedDecl,
 @property (readonly) BOOL isPreprocessing;
 
 /*!
- * @property        isExpression
- * @abstract        Whether the cursor is an expression of rot
+	@property        isExpression
+	@abstract        Whether the cursor is an expression of rot
  */
 @property (readonly) BOOL isExpression;
 
 /*!
- * @property        isAttribute
- * @abstract        Whether the cursor is an attribute of rot
+	@property        isAttribute
+	@abstract        Whether the cursor is an attribute of rot
  */
 @property (readonly) BOOL isAttribute;
 
 /*!
- * @property        isInvalid
- * @abstract        Whether the cursor is invalid of rot
+	@property        isInvalid
+	@abstract        Whether the cursor is invalid of rot
  */
 @property (readonly) BOOL isInvalid;
 
 /*!
- * @property        isStatement
- * @abstract        Whether the cursor is a statement of rot
+	@property        isStatement
+	@abstract        Whether the cursor is a statement of rot
  */
 @property (readonly) BOOL isStatement;
 
 /*!
- * @property        isTranslationUnit
- * @abstract        Whether the cursor is a translation unit of rot
+	@property        isTranslationUnit
+	@abstract        Whether the cursor is a translation unit of rot
  */
 @property (readonly) BOOL isTranslationUnit;
 
 /*!
- * @property        isUnexposed
- * @abstract        Whether the cursor is unexposed of rot
+	@property        isUnexposed
+	@abstract        Whether the cursor is unexposed of rot
  */
 @property (readonly) BOOL isUnexposed;
 
 /*!
- * @method          cursorWithLocation:translationUnit:
- * @abstract        Gets a cursor from a location and a translation unit
- * @param           location        The source location
- * @param           translationUnit The translation unit
- * @return          The cursor object
- * @discussion      The returned object is autoreleased.
+	@method          cursorWithLocation:translationUnit:
+	@abstract        Gets a cursor from a location and a translation unit
+	@param           location        The source location
+	@param           translationUnit The translation unit
+	@return          The cursor object
+	@discussion      The returned object is autoreleased.
  */
-+ ( instancetype )cursorWithLocation: ( CKSourceLocation * )location translationUnit: ( CKTranslationUnit * )translationUnit;
++ (instancetype)cursorWithLocation:(CKSourceLocation*)l translationUnit:(CKTranslationUnit*)tu;
 
 /*!
- * @method          initWithLocation:translationUnit:
- * @abstract        Initializes a cursor with a location and a translation unit
- * @param           location        The source location
- * @param           translationUnit The translation unit
- * @return          The cursor object
+	@method          initWithLocation:translationUnit:
+	@abstract        Initializes a cursor with a location and a translation unit
+	@param           location        The source location
+	@param           translationUnit The translation unit
+	@return          The cursor object
  */
-- ( instancetype )initWithLocation: ( CKSourceLocation * )location translationUnit: ( CKTranslationUnit * )translationUnit;
+- initWithLocation:(CKSourceLocation*)l translationUnit:(CKTranslationUnit*)tu;
 
 @end

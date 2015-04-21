@@ -9,31 +9,30 @@
 @implementation CKCompletionResult
 @synthesize string  = _string, cursorKind  = _cursorKind, chunks = _chunks;
 
-+ ( instancetype )completionResultWithCXCompletionString: ( CXCompletionString )string cursorKind: ( CKCursorKind )cursorKind
++ (instancetype)completionResultWithCXCompletionString: (CXCompletionString)string cursorKind: (CKCursorKind)cursorKind
 {
-    return [self.alloc 
-         initWithCXCompletionString: string cursorKind: cursorKind ];
+    return [self.alloc initWithCXCompletionString: string cursorKind: cursorKind ];
 }
 
-- ( instancetype )initWithCXCompletionString: ( CXCompletionString )string cursorKind: ( CKCursorKind )cursorKind
+- (instancetype)initWithCXCompletionString: (CXCompletionString)string cursorKind: (CKCursorKind)cursorKind
 {
     unsigned int        chunkCount;
     unsigned int        i;
     NSMutableArray    * chunks;
     CKCompletionChunk * chunk;
     
-    if( ( self = [ self init ] ) )
+    if((self = [ self init ]))
     {
         _string     = string;
         _cursorKind = cursorKind;
-        chunkCount  = clang_getNumCompletionChunks( string );
-        chunks      = [ NSMutableArray arrayWithCapacity: ( NSUInteger )chunkCount ];
+        chunkCount  = clang_getNumCompletionChunks(string);
+        chunks      = [ NSMutableArray arrayWithCapacity: (NSUInteger)chunkCount ];
         
-        for( i = 0; i < chunkCount; i++ )
+        for(i = 0; i < chunkCount; i++)
         {
-            chunk = [ CKCompletionChunk completionChunkWithCXCompletionString: string chunkNumber: ( NSUInteger )i ];
+            chunk = [ CKCompletionChunk completionChunkWithCXCompletionString: string chunkNumber: (NSUInteger)i ];
             
-            if( chunk != nil )
+            if(chunk != nil)
             {
                 [ chunks addObject: chunk ];
             }

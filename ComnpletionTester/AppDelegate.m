@@ -56,14 +56,14 @@
 
 
 //        /* Logs each diagnostic and fix-its */
-//        for( d in tu.diagnostics )
+//        for( d in tu.diagnostics)
 //        {
-//            NSLog( @"Diagnostic: %@", d );
-//            NSLog( @"FixIts: %@", d.fixIts );
+//            NSLog( @"Diagnostic: %@", d);
+//            NSLog( @"FixIts: %@", d.fixIts);
 //        }
 //        
 //        /* Logs the available tokens */
-//        NSLog( @"%@", tu.tokens );
+//        NSLog( @"%@", tu.tokens);
 //        
 //        /* Changes the code, using the 'text' property */
 //        tu.text =   @"#import <Foundation/Foundation.h>\n"
@@ -72,7 +72,7 @@
 //                    @"{}\n"
 //                    @"@end\n"
 //                    @"\n"
-//                    @"int main( void )\n"
+//                    @"int main( void)\n"
 //                    @"{\n"
 //                    @"    NSString * x;\n"
 //                    @"    Foo      * f;\n"
@@ -81,14 +81,14 @@
 //                    @"}\n";
 //        
 //        /* Logs each diagnostic and fix-its */
-//        for( d in tu.diagnostics )
+//        for( d in tu.diagnostics)
 //        {
-//            NSLog( @"Diagnostic: %@", d );
-//            NSLog( @"FixIts: %@", d.fixIts );
+//            NSLog( @"Diagnostic: %@", d);
+//            NSLog( @"FixIts: %@", d.fixIts);
 //        }
 //        
 //        /* Logs the available tokens */
-//        NSLog( @"%@", tu.tokens );
+//        NSLog( @"%@", tu.tokens);
 //
 //
 //                /* Changes the code, using the 'text' property */

@@ -6,11 +6,7 @@
 #import "CKCursor.h"
 #import "CKSourceLocation.h"
 
-CKTokenKind CKTokenKindPunctuation = CXToken_Punctuation,
-            CKTokenKindKeyword = CXToken_Keyword,
-            CKTokenKindIdentifier = CXToken_Identifier,
-            CKTokenKindLiteral = CXToken_Literal,
-            CKTokenKindComment = CXToken_Comment;
+JREnumDefine(CKTokenKind);
 
 @implementation CKToken
 

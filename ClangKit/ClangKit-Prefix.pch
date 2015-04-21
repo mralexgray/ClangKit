@@ -2,24 +2,21 @@
 /* $Id$ */
 
 /*!
- * @header          ClangKit-Prefix.pch
- * @copyright       (c) 2010-2014 - Jean-David Gadina - www.xs-labs.com
- * @author          Jean-David Gadina - www.xs-labs.com
- * @abstract        Precompiled header for the ClangKit project
+	@header          ClangKit-Prefix.pch
+	@copyright       (c) 2010-2014 - Jean-David Gadina - www.xs-labs.com
+	@author          Jean-David Gadina - www.xs-labs.com
+	@abstract        Precompiled header for the ClangKit project
  */
 
 #ifdef __OBJC__
     
     @import AppKit;
+    @import AtoZUniversal;
+
     #import <clang-c/Index.h>
     #import "CKWarnings.h"
     #import "CKTypes.h"
      
-    #import "NSFileManager+CE.h"
-    #import "NSBundle+CE.h"
-    #import "NSString+CE.h"
-    #import "NSTextView+CE.h"
-    #import "NSImage+CE.h"
-    #import "NSView+CE.h"
+    #import "CE+Categories.h"
 
 #endif
