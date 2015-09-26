@@ -211,6 +211,7 @@ CKCursorKind CKCursorKindLastPreprocessing                  = CXCursor_LastPrepr
 @synthesize isStatement         = _isStatement;
 @synthesize isTranslationUnit   = _isTranslationUnit;
 @synthesize isUnexposed         = _isUnexposed;
+@synthesize encoding            = _encoding;
 
 + ( id )cursorWithLocation: ( CKSourceLocation * )location translationUnit: ( CKTranslationUnit * )translationUnit
 {
@@ -240,6 +241,7 @@ CKCursorKind CKCursorKindLastPreprocessing                  = CXCursor_LastPrepr
     [ _canonical        release ];
     [ _referenced       release ];
     [ _location         release ];
+    [_encoding          release ];
     
 	free( _cxCursorPointer );
     
@@ -248,12 +250,25 @@ CKCursorKind CKCursorKindLastPreprocessing                  = CXCursor_LastPrepr
 
 - ( NSString * )description
 {
-    NSString * description;
-    
-    description = [ super description ];
-    description = [ description stringByAppendingFormat: @": %@ - %@", self.kindSpelling, self.displayName ];
-    
-    return description;
+    NSMutableString * description = [self.className stringByAppendingFormat:@" kind: %@ %@ display: %@  is:", self.kindSpelling, !self.encoding ? @"" : [NSString stringWithFormat:@" (%@) ", self.encoding], self.displayName].mutableCopy;
+
+//    description = [ super description ];
+
+
+
+//    CKCursor         * _definition;
+//    CKCursor         * _semanticParent;
+//    CKCursor         * _lexicalParent;
+//    CKCursor         * _canonical;
+//    CKCursor         * _referenced;
+//    CKSourceLocation * _location;
+  [@[@"isDefinition", @"isDeclaration", @"isReference", @"isPreprocessing", @"isExpression", @"isAttribute", @"isInvalid",  @"isStatement", @"isTranslationUnit", @"isUnexposed"]
+    enumerateObjectsUsingBlock:^(id x, __unused NSUInteger idx, __unused BOOL *stop) {
+
+    ![[self valueForKey:x] boolValue] ? (void)nil : [description appendFormat:@"%@ ", [x substringFromIndex:2]];  // ?@"YES" : @"NO", (idx+1) % 5 == 0 ? @"\n" : @""];
+
+  }];
+  return [[description copy]autorelease];
 }
 
 - ( CKCursor * )referenced

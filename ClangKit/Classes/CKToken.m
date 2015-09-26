@@ -118,44 +118,21 @@ CKTokenKind CKTokenKindComment      = CXToken_Comment;
 
 - ( NSString * )description
 {
-    NSString * description;
-    NSString * kind;
+    NSString * kind =
+      self.kind == CKTokenKindPunctuation ? @"Punctuation" :
+      self.kind == CKTokenKindKeyword     ? @"Keyword"     :
+      self.kind == CKTokenKindIdentifier  ? @"Identifier"  :
+      self.kind == CKTokenKindLiteral     ? @"Literal"     :
+      self.kind == CKTokenKindComment     ? @"Comment"     : @"Unknown";
     
-    if( self.kind == CKTokenKindPunctuation )
-    {
-        kind = @"Punctuation";
-    }
-    else if( self.kind == CKTokenKindKeyword )
-    {
-        kind = @"Keyword";
-    }
-    else if( self.kind == CKTokenKindIdentifier )
-    {
-        kind = @"Identifier";
-    }
-    else if( self.kind == CKTokenKindLiteral )
-    {
-        kind = @"Literal";
-    }
-    else if( self.kind == CKTokenKindComment )
-    {
-        kind = @"Comment";
-    }
-    else
-    {
-        kind = @"Unknown";
-    }
-    
-    description = [ super description ];
-    description = [ description stringByAppendingFormat: @": %@[%lu:%lu] %@ (%@)",
-                                                         kind,
+//    description = @"";//[ super description ];
+  return [self.className stringByAppendingFormat: @": %2lu ┫%lu\t%@%@ (%@)",
                                                          ( unsigned long )( self.line ),
                                                          ( unsigned long )( self.column ),
-                                                         self.spelling,
+                                                        [self.spelling stringByPaddingToLength:12 withString:@" " startingAtIndex:0],
+                                                         [kind stringByPaddingToLength:11 withString:@" " startingAtIndex:0],
                                                          self.cursor.kindSpelling
                   ];
-    
-    return description;
 }
 
 @end

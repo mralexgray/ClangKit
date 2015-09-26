@@ -39,6 +39,8 @@
  *                  classes. No other header file should be directly included.
  */
 
+#import <Foundation/Foundation.h>
+
 #import "CKTypes.h"
 #import "CKDiagnostic.h"
 #import "CKFixIt.h"

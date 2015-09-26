@@ -1016,6 +1016,7 @@ FOUNDATION_EXPORT CKCursorKind CKCursorKindLastPreprocessing;
     CKCursorKind       _kind;
     NSString         * _displayName;
     NSString         * _kindSpelling;
+    NSString         * _encoding;
     CKCursor         * _definition;
     CKCursor         * _semanticParent;
     CKCursor         * _lexicalParent;
@@ -1040,6 +1041,12 @@ FOUNDATION_EXPORT CKCursorKind CKCursorKindLastPreprocessing;
  * @abstract        The cursor kind
  */
 @property( atomic, readonly ) CKCursorKind kind;
+
+/*!
+ * @property        encoding
+ * @abstract        The cursor's ObjC encoding.
+ */
+@property( atomic, readonly ) NSString * encoding;
 
 /*!
  * @property        displayName

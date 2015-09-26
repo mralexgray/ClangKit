@@ -38,6 +38,7 @@
 {
     CXString            displayName;
     CXString            kindSpelling;
+//    CXString            encoding;
     CXSourceLocation    location;
     
     if( ( self = [ self init ] ) )
@@ -60,10 +61,17 @@
         _kindSpelling = [ [ NSString alloc ] initWithCString: clang_getCString( kindSpelling) encoding: NSUTF8StringEncoding ];
         location      = clang_getCursorLocation( cursor );
         _location     = [ [ CKSourceLocation alloc ] initWithPointerData1: ( void * )location.ptr_data[ 0 ] pointerData2: ( void * )location.ptr_data[ 1 ] intData: location.int_data ];
-        
+
         if( clang_isCursorDefinition( cursor ) )
         {
             _isDefinition = YES;
+
+//          if ( clang_isDeclaration((enum CXCursorKind)_kind)) {
+//
+//           encoding = clang_getDeclObjCTypeEncoding(cursor);
+//          _encoding = [NSString.alloc initWithCString: clang_getCString(encoding) encoding: NSUTF8StringEncoding ];
+//        }
+
         }
         
         [ self definition ];

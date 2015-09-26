@@ -45,13 +45,14 @@
 
 #else
 
+/*
 #pragma clang diagnostic fatal "-Wabi"
 #pragma clang diagnostic fatal "-Waddress-of-temporary"
 #pragma clang diagnostic fatal "-Waddress"
 #pragma clang diagnostic fatal "-Waggregate-return"
 #pragma clang diagnostic fatal "-Wall"
 #pragma clang diagnostic fatal "-Wambiguous-member-template"
-#pragma clang diagnostic fatal "-Warc-abi"
+//#pragma clang diagnostic fatal "-Warc-abi"
 #pragma clang diagnostic fatal "-Warc-non-pod-memaccess"
 #pragma clang diagnostic fatal "-Warc-retain-cycles"
 #pragma clang diagnostic fatal "-Warc-unsafe-retained-assign"
@@ -197,6 +198,7 @@
 #pragma clang diagnostic fatal "-Wvla"
 #pragma clang diagnostic fatal "-Wvolatile-register-var"
 #pragma clang diagnostic fatal "-Wwrite-strings"
+*/
 
 /* Not wanted: */
 

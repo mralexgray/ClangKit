@@ -82,7 +82,11 @@ int main( void )
         }
         
         /* Logs the available tokens */
-        NSLog( @"%@", tu.tokens );
+        [tu.tokens enumerateObjectsUsingBlock:^(id obj, NSUInteger __unused idx, __unused  BOOL *stop) {
+
+          printf("%s\n", [obj description].UTF8String);
+
+        }];
     }
     
     return 0;
